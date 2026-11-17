@@ -1,0 +1,11 @@
+opencv-python==5.0.0.93
+# 1.0.x crashes on Apple Silicon (Metal helper "Service is unavailable"); 0.10.35 works.
+mediapipe==0.10.35
+ultralytics==8.4.163
+torch==2.14.0
+numpy==2.5.3
+pytest==9.1.1
+# Hugging Face vision-language model (SmolVLM2-500M) for open-vocabulary naming
+transformers==5.22.1
+num2words==0.5.14
+pillow==12.3.0

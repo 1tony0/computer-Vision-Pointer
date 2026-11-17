@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.pytest_cache/
+results/
+clips/*
+!clips/.gitkeep
+*.mp4
+.DS_Store
+*.MOV
+*.mov
