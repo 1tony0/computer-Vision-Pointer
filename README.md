@@ -46,23 +46,23 @@ Model weights are in `models/` (MediaPipe `gesture_recognizer.task`, `yolo26n-se
 .venv/bin/python run.py --source clips/kitchen.mp4 --save out.mp4 --log events.csv
 ```
 
-`--pointer hybrid|landmarks|mask` picks how the hand is found (default hybrid: MediaPipe, then
+`--pointer hybrid|landmarks|mask` picks how the hand is found (default hybrid, MediaPipe, then
 the arm mask). Comparing the three is a ready-made experiment.
 
 Only the **right index finger** points (`--hand left|any` to change it). The other hand is
 ignored, so it can hold things or rest on the desk. Which arm is which comes from where it enters
 the frame (the right arm comes in from the right), since MediaPipe's left/right label is
-unreliable for a hand seen from behind. In the mask fallback the end of the arm must also be
+unreliable for a hand seen from behind. In the mask fallback, the end of the arm must also be
 finger-thin, so fists and relaxed hands don't count as pointing.
 
 Pointing at something in your **other hand** works too: when the ray passes close to the other
-hand, the target is what it holds. If YOLO recognises the held object (e.g. a phone) that
-detection is used; otherwise the vision-language model is asked what the hand is holding. With
+hand, the target is what it holds. If YOLO recognizes the held object (e.g. a phone) that
+detection is used; otherwise, the vision-language model is asked what the hand is holding. With
 both arms in view, the arm entering further right is the right arm.
 
 Recognition starts **disarmed**: give a thumbs-up with both hands (or press `a` in the window) to arm it. It
 stays armed while you keep pointing. It switches off when you give a thumbs-down (hold ~0.5 s) or after 5 s without pointing (`--arm-window`).
-`--always-armed` skips the gate, `--no-vlm` names objects with YOLO labels only. The first run
+`--always-armed` skips the gate; `--no-vlm` names objects with YOLO labels only. The first run
 downloads the vision-language model (~2 GB) into `~/.cache/huggingface`.
 
 Results are shown and **spoken**. When the detector and the language model agree (e.g. YOLO
@@ -84,7 +84,7 @@ Making the other mode's gesture switches modes; a thumbs-down turns either one o
 top-right shows the mode (green POINT, blue LOOK).
 
 Look mode measures head motion between frames with phase correlation (`pointer/look.py`). After
-something is named you have to look elsewhere before the next one. Signs are read out ("a train
+something is named, you have to look elsewhere before the next one. Signs are read out ("a train
 station sign that says 'No smoking'"). The 1.5 s comes from the station clip: deliberate looks kept
 the head still for 1.7-4.2 s, incidental still moments lasted 1.1-1.3 s. The peace sign was never
 detected by accident in any of the nine test clips. `--no-look` disables look mode; with
@@ -130,4 +130,3 @@ triggers, time to identify, FPS, per-stage latency) and annotated videos for fig
 
 MediaPipe Gesture Recognizer (Google, Apache-2.0), Ultralytics YOLO (AGPL-3.0), OpenCV (Apache-2.0),
 SmolVLM2 (Hugging Face, Apache-2.0) via `transformers` (Apache-2.0).
-Cite these in the report.
